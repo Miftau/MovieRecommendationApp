@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 def convert():
-    base_path = 'MovieRecommendationApp/data/ml-100k/'
+    base_path = 'data/ml-100k/'
 
     # Convert u.data to ratings.csv
     ratings = pd.read_csv(
@@ -15,7 +15,6 @@ def convert():
     print("✅ Created data/ratings.csv")
 
     # Convert u.item to movies.csv
-    # Columns: movieId | title | release date | video release | IMDb URL | genres...
     movie_columns = [
         'movieId', 'title', 'release_date', 'video_release_date', 'imdb_url',
         'unknown', 'Action', 'Adventure', 'Animation', 'Children\'s', 'Comedy', 'Crime',
@@ -31,9 +30,13 @@ def convert():
         engine='python'
     )
 
-    # Optional: Combine genres into a single string for each movie
+    # Create a genres column by combining all genre flags into strings
     genre_cols = movie_columns[5:]
-    movies['genres'] = movies[genre_cols].dot(pd.Series(genre_cols + ' ')).str.strip()
+
+    def extract_genres(row):
+        return '|'.join([genre for genre in genre_cols if row[genre] == 1])
+
+    movies['genres'] = movies.apply(extract_genres, axis=1)
 
     movies[['movieId', 'title', 'genres']].to_csv('data/movies.csv', index=False)
     print("✅ Created data/movies.csv")
