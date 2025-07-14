@@ -14,3 +14,8 @@ class Rating(db.Model):
     movie_id = db.Column(db.Integer)
     rating = db.Column(db.Float)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    
+class Admin(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    password_hash = db.Column(db.String(200))
