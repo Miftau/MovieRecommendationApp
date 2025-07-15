@@ -10,7 +10,7 @@ CORS(app)
 app.config.from_object(Config)
 
 db.init_app(app)
-app.register_blueprint(admin_bp, url_prefix="/admin")
+app.register_blueprint(admin_bp)
 app.register_blueprint(api_bp, url_prefix="/api")
 
 if __name__ == "__main__":
