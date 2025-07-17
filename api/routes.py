@@ -1,7 +1,5 @@
-
-from flask import request, jsonify
+from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User, Rating
 import pandas as pd
 import pickle
 from flask import request, jsonify
@@ -9,6 +7,7 @@ from models import db, User, Rating
 from . import api_bp
 import os
 
+movies_df = pd.read_csv("data/movies.csv")
 
 @api_bp.route("/register", methods=["POST"])
 def register():
@@ -94,3 +93,37 @@ def get_recommendations(user_id):
         return jsonify({"error": str(e)}), 500
 
 
+@api_bp.route("/api/movies/<int:movie_id>", methods=["GET"])
+def get_movie_details(movie_id):
+    movie = movies_df[movies_df["movieId"] == movie_id]
+    if movie.empty:
+        return jsonify({"error": "Movie not found"}), 404
+
+    # Query ratings from DB
+    rating_stats = (
+        db.session.query(
+            func.avg(Rating.rating).label("avg_rating"),
+            func.count(Rating.rating).label("num_ratings")
+        )
+        .filter(Rating.movie_id == movie_id)
+        .first()
+    )
+
+    recent_ratings = (
+        Rating.query.filter_by(movie_id=movie_id)
+        .order_by(Rating.id.desc())
+        .limit(5)
+        .all()
+    )
+
+
+    movie_data = {"movieId": int(movie["movieId"].values[0]), "title": movie["title"].values[0],
+                  "genres": movie["genres"].values[0],
+                  "average_rating": round(rating_stats.avg_rating, 2) if rating_stats.avg_rating else None,
+                  "total_ratings": rating_stats.num_ratings, "recent_ratings": [
+            {
+                "user_id": r.user_id,
+                "rating": r.rating
+            } for r in recent_ratings
+        ]}
+    return jsonify(movie_data), 200

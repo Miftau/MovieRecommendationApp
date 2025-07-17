@@ -13,7 +13,7 @@ def login():
         admin = Admin.query.filter_by(username=username).first()
         if admin and check_password_hash(admin.password_hash, password):
             session["admin"] = admin.username
-            return redirect("/admin/dashboard")
+            return redirect("/dashboard")
         return render_template("login.html", error="Invalid credentials")
     return render_template("login.html")
 
