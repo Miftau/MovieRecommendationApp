@@ -9,7 +9,7 @@ movies = model_data['movies']
 
 def get_recommendations_for_user_db(user_id, top_n=10):
     user_ratings = Rating.query.filter_by(user_id=user_id).all()
-    high_rated = [r.movie_id for r in user_ratings if r.rating >= 4.0]
+    high_rated = [r.movie_id for r in user_ratings if r.rating >= 2.0]
 
     if not high_rated:
         return []
