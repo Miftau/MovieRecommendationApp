@@ -123,7 +123,8 @@ def get_movie_details(movie_id):
                   "total_ratings": rating_stats.num_ratings, "recent_ratings": [
             {
                 "user_id": r.user_id,
-                "rating": r.rating
+                "rating": r.rating,
+                "timestamp": r.timestamp.strftime("%Y-%m-%d %H:%M:%S")
             } for r in recent_ratings
         ]}
     return jsonify(movie_data), 200

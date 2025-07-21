@@ -649,7 +649,19 @@ movieId,title,genres,year,description,poster,language
 648,"Quiet Man, The (1952)",Comedy|Romance,1952,,,
 649,Once Upon a Time in America (1984),Crime|Drama|Thriller,1984,,,
 650,"Seventh Seal, The (Sjunde inseglet, Det) (1957)",Drama,1957,,,
-651,Glory (1989),Action|Drama|War,1989,"Crimson Glory at Manatee Civic Center, Palmetto, FL, USA  In Dark Places Where Dragons Rule Masque of the Red Death Azrael Valhalla Red Sharks Painted Skies Dragon Lady Guitar Solo [Jon Drenning] Queen of the Masquerade Lonely Lost Reflection Eternal World",,en
+651,Glory (1989),Action|Drama|War,1989,"Crimson Glory at Manatee Civic Center, Palmetto, FL, USA  In Dark Places
+ Where Dragons Rule
+ Masque of the Red Death
+ Azrael
+ Valhalla
+ Red Sharks
+ Painted Skies
+ Dragon Lady
+ Guitar Solo [Jon Drenning]
+ Queen of the Masquerade
+ Lonely
+ Lost Reflection
+ Eternal World",,en
 652,Rosencrantz and Guildenstern Are Dead (1990),Comedy|Drama,1990,,,
 653,Touch of Evil (1958),Crime|Film-Noir|Thriller,1958,,,
 654,Chinatown (1974),Film-Noir|Mystery|Thriller,1974,,,
@@ -1298,7 +1310,7 @@ movieId,title,genres,year,description,poster,language
 1297,Love Affair (1994),Drama|Romance,1994,,,
 1298,"Band Wagon, The (1953)",Comedy|Musical,1953,,,
 1299,Penny Serenade (1941),Drama|Romance,1941,,,
-1300,'Til There Was You (1997),Drama|Romance,1997,,,
+1300,Til There Was You (1997),Drama|Romance,1997
 1301,Stripes (1981),Comedy,1981,,,
 1302,Late Bloomers (1996),Comedy,1997,,,
 1303,"Getaway, The (1994)",Action,1994,,,
