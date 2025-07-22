@@ -7,7 +7,10 @@ from models import db, User, Rating
 from . import api_bp
 import os
 
-movies_df = pd.read_csv("data/movies.csv")
+try:
+    movies_df = pd.read_csv("data/movies.csv", dtype={"movieId": int})
+except Exception as e:
+    print(f"❌ Failed to load movies.csv: {e}")
 
 @api_bp.route("/register", methods=["POST"])
 def register():
@@ -95,7 +98,7 @@ def get_recommendations(user_id):
 
 @api_bp.route("/api/movies/<int:movie_id>", methods=["GET"])
 def get_movie_details(movie_id):
-    movie = movies_df[movies_df["movieId"] == movie_id]
+    movie = movies_df[movies_df["movieId"] == int(movie_id)]
     if movie.empty:
         return jsonify({"error": "Movie not found"}), 404
 
