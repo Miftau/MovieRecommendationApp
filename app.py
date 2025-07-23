@@ -1,8 +1,8 @@
 from flask import Flask
 from config import Config
 from models import db
-from admin import admin_bp
-from api import api_bp
+from admin.routes import admin_bp
+from api.routes import api_bp
 from flask_cors import CORS
 
 app = Flask(__name__)

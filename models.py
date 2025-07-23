@@ -19,3 +19,11 @@ class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
     password_hash = db.Column(db.String(200))
+
+class Movie(db.Model):
+    __tablename__ = 'movies'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    genres = db.Column(db.String)
+    poster = db.Column(db.String)
+    year = db.Column(db.String)
