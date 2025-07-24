@@ -111,7 +111,9 @@ def get_recommendations(user_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@api_bp.route("/movie/<int:movie_id>", methods=["GET"])
+
+
+@api_bp.route("/movies/<int:movie_id>", methods=["GET"])
 def get_movie_details(movie_id):
     try:
         # Load enriched movie data
