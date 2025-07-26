@@ -10,3 +10,4 @@ gunicorn
 SQLAlchemy~=2.0.41
 flask_sqlalchemy
 flask_cors
+APScheduler
